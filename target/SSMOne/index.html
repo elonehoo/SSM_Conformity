@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INDEX</title>
+</head>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="static/layui/css/layui.css">
+<!-- 引入组件库 -->
+<script src="static/layui/layui.all.js"></script>
+
+<body>
+<div id="app">
+    <button type="button" class="layui-btn" @click.prevent="apply()">
+        <i class="layui-icon">&#xe608;</i>
+    </button>
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="150">
+            <col width="150">
+            <col width="150">
+            <col width="150">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Position</th>
+            <th>Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in items">
+                <td>{{item.empId}}</td>
+                <td>{{item.empName}}</td>
+                <td>{{item.gender=="M"?"male":"female"}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.department.deptName}}</td>
+                <td>
+                    <button type="button" class="layui-btn" @click.prevent="del(item.empId)">
+                        <i class="layui-icon">&#xe640;</i>
+                    </button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div id="paging"></div>
+</div>
+</body>
+<script src="static/js/axios.min.js"></script>
+<script src="static/js/vue-2.4.0.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            items:[],
+            message:"",
+            pagingSize:"",
+            pagin:"",
+        },
+        created(){
+            this.show()
+        },
+        methods: {
+            show(){
+                axios.get('emps', {
+                    params: {
+
+                    }
+                })
+                .then(function (response) {
+                    console.log(response.data)
+                    app.items = response.data.extend.pageInfo.list;
+                    app.pagingSize = response.data.extend.pageInfo.total;
+                    app.$nextTick(function () {
+                        app.layerPaging();
+                    })
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+            del(number){
+                axios.delete('emps', {
+                    params: {
+                        id:number
+                    }
+                })
+                    .then(function (response) {
+                        layer.msg(response.data)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                app.pagins(app.pagin)
+            },
+            layerPaging(){
+                layui.use('laypage', function(){
+                    var laypage = layui.laypage;
+                    //执行一个laypage实例
+                    laypage.render({
+                        elem: 'paging'
+                        ,count:app.pagingSize //数据总数，从服务端得到
+                        ,limit:5
+                        ,jump: function(obj, first){
+                            //obj包含了当前分页的所有参数，比如：
+                            console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                            app.pagin=obj.curr;
+                            //首次不执行
+                            if(!first){
+                                app.pagins(obj.curr);
+                            }
+                        }
+                    });
+                });
+            },
+            apply(){
+                window.location="apply.html";
+            },
+            pagins(number){
+                axios.get('emps', {
+                    params: {
+                        pn:number
+                    }
+                })
+                    .then(function (response) {
+                        app.items = response.data.extend.pageInfo.list;
+                        app.pagingSize = response.data.extend.pageInfo.pages;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        }
+    })
+</script>
+</html>

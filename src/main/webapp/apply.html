@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>APPLY</title>
+</head>
+<body>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="static/layui/css/layui.css">
+<!-- 引入组件库 -->
+<script src="static/layui/layui.all.js"></script>
+<div id="app">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">Name</label>
+            <div class="layui-input-inline">
+                <input  v-model="EName" type="text" name="name" placeholder="Please enter your name" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">postbox</label>
+            <div class="layui-input-inline">
+                <input  v-model="EEmail" type="text" name="email" placeholder="Please enter email address" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">position</label>
+            <div class="layui-input-inline">
+                <select v-model="selected">
+                    <option value="" disabled >Select position</option>
+                    <option v-for="item in items" :value=item.deptId >{{item.deptName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">gender</label>
+            <div class="layui-input-block">
+                <input v-model="ESex" type="radio" name="sex" value="M" title="male" checked>
+                <input v-model="ESex" type="radio" name="sex" value="F" title="female">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" @click.prevent="apply()">Submit</button>
+                <p>{{selected}}</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="static/js/axios.min.js"></script>
+<script src="static/js/vue-2.4.0.js"></script>
+<script>
+    //Demo
+
+    var app = new Vue({
+        el:"#app",
+        data:{
+            items:[],
+            EName:"",
+            EEmail:"",
+            ESex:"M",
+            selected: '',
+        },
+        created(){
+            this.show()
+        },
+        methods:{
+            show(){
+                axios.get('dept', {
+                    params: {
+
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response)
+                        app.items=response.data;
+                        app.$nextTick(function () {
+                            app.layui();
+                        })
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            layui(){
+                layui.use('form', function(){
+                    var form = layui.form;
+                    form.render(); //更新全部
+                });
+            },
+            apply(){
+                axios.post('emps', {
+                        empName:app.EName,
+                        email:app.EEmail,
+                        gender:app.ESex,
+                })
+                    .then(function (response) {
+                        console.log(response.data)
+                        layer.msg(response.data)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+
+        }
+    })
+</script>
+</body>
+
+</html>
