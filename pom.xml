@@ -67,7 +67,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>4.3.30.RELEASE</version>
+      <version>6.1.14</version>
     </dependency>
 
     <!--Spring-test -->
@@ -75,7 +75,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
-      <version>4.3.30.RELEASE</version>
+      <version>6.1.14</version>
     </dependency>
 
 
@@ -84,7 +84,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-aspects</artifactId>
-      <version>4.3.30.RELEASE</version>
+      <version>6.1.14</version>
     </dependency>
 
     <!--MyBatis -->
