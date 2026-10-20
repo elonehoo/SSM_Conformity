@@ -33,7 +33,7 @@
     <dependency>
       <groupId>org.mybatis.generator</groupId>
       <artifactId>mybatis-generator-core</artifactId>
-      <version>1.4.1</version>
+      <version>1.4.2</version>
     </dependency>
 
 
@@ -48,7 +48,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.18.11</version>
+      <version>2.22.4</version>
     </dependency>
 
     <!--JSR303数据校验支持；tomcat7及以上的服务器，
@@ -58,7 +58,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <version>6.2.0.Final</version>
+      <version>6.2.6.Final</version>
     </dependency>
 
 
@@ -92,7 +92,7 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.5.11</version>
+      <version>3.5.19</version>
     </dependency>
     <!-- MyBatis整合Spring的适配包 -->
     <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
@@ -146,16 +146,16 @@
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.5.0</version>
         </plugin>
         <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.5.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.10.1</version>
+          <version>3.16.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
@@ -163,7 +163,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.3.2</version>
+          <version>3.5.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
