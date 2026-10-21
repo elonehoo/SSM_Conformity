@@ -103,11 +103,11 @@
     </dependency>
 
     <!-- 数据库连接池、驱动 -->
-    <!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
+    <!-- c3p0 0.9.1 does not implement JDBC 4 ResultSet methods MyBatis 3.5 calls. -->
     <dependency>
-      <groupId>c3p0</groupId>
+      <groupId>com.mchange</groupId>
       <artifactId>c3p0</artifactId>
-      <version>0.9.1</version>
+      <version>0.9.5.5</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
