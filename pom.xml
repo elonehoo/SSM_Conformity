@@ -40,7 +40,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>6.0.14</version>
+      <version>6.2.19</version>
     </dependency>
 
     <!-- 返回json字符串的支持 -->
@@ -67,7 +67,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>7.0.9</version>
+      <version>7.0.10</version>
     </dependency>
 
     <!--Spring-test -->
@@ -75,7 +75,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
-      <version>7.0.9</version>
+      <version>7.0.10</version>
     </dependency>
 
 
@@ -84,7 +84,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-aspects</artifactId>
-      <version>7.0.9</version>
+      <version>7.0.10</version>
     </dependency>
 
     <!--MyBatis -->
@@ -92,7 +92,7 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.5.19</version>
+      <version>3.6.0</version>
     </dependency>
     <!-- MyBatis整合Spring的适配包 -->
     <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
@@ -113,7 +113,7 @@
     <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
-      <version>8.2.0</version>
+      <version>8.4.0</version>
     </dependency>
     <!-- （jstl，servlet-api，junit） -->
     <!-- https://mvnrepository.com/artifact/jstl/jstl -->
@@ -159,7 +159,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.6.0</version>
+          <version>3.6.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
